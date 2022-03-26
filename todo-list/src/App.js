@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {Fragment, useEffect, useState} from "react";
+import TodoArrayItems from './components/todoArrayItems';
 
 function App() {
 
@@ -22,12 +23,7 @@ function App() {
     <div>
       {todoArrays
         ? todoArrays.map((todoArrayItems) => {
-            return (
-              <Fragment key={todoArrayItems.id}>
-                <input type="checkbox" checked={todoArrayItems.isDone}/>
-                <span>{todoArrayItems.taskName}</span>
-                </Fragment>
-            );
+            return <TodoArrayItems key={todoArrayItems.id} data={todoArrayItems} />;
         })
         : "loading div"}
     </div>

@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tusharJava.todoapp.domain.TodoArray;
@@ -21,5 +24,11 @@ public class TodoController {
 	public ResponseEntity<?> fetchAllItems(){
 		List<TodoArray> todoArrayItems = todoService.fetchAllItems();
 		return ResponseEntity.ok(todoArrayItems);
+	}
+	
+	@PutMapping("/api/todoArrayItems/{id}")
+	public ResponseEntity<?> updateItems(@PathVariable Integer id, @RequestBody TodoArray todoArray ){
+		TodoArray updatedItem =todoService.updateTodoItem(id,todoArray);
+		return ResponseEntity.ok(updatedItem);
 	}
 }
