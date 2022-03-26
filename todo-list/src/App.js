@@ -1,25 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import {Fragment, useEffect, useState} from "react";
 
 function App() {
+
+  const [todoArrays, setTodoArray] = useState(null);
+
+  useEffect(() => {
+    if(!todoArrays){
+      fetch('http://localhost:8080/api/todoArrayItems')
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("todo list:",data);
+          setTodoArray(data);
+        });
+    }
+  
+  },[todoArrays]);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {todoArrays
+        ? todoArrays.map((todoArrayItems) => {
+            return (
+              <Fragment key={todoArrayItems.id}>
+                <input type="checkbox" checked={todoArrayItems.isDone}/>
+                <span>{todoArrayItems.taskName}</span>
+                </Fragment>
+            );
+        })
+        : "loading div"}
     </div>
   );
 }
 
 export default App;
+ 
