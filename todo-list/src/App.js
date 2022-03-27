@@ -12,14 +12,32 @@ function App() {
       fetch('http://localhost:8080/api/todoArrayItems')
         .then((response) => response.json())
         .then((data) => {
-          console.log("todo list:",data);
+
           setTodoArray(data);
         });
     }
   
   },[todoArrays]);
   
+  function addNewTodoItem() {
+    fetch("http://localhost:8080/api/todoArrayItems", {
+      headers: {
+        "content-type":"application/json",
+      },
+      method: "POST",
+    })
+        .then((response) => response.json())
+        .then((aData) => {
+          
+          setTodoArray([...todoArrays,aData]);
+        });
+  }
+
   return (
+    <>
+    <div>
+      <button onClick={addNewTodoItem}>Add Tasks</button>
+    </div>
     <div>
       {todoArrays
         ? todoArrays.map((todoArrayItems) => {
@@ -27,6 +45,7 @@ function App() {
         })
         : "loading div"}
     </div>
+    </>
   );
 }
 

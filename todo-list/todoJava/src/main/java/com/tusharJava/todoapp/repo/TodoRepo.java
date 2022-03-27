@@ -22,4 +22,11 @@ public class TodoRepo {
 		}
 		return todoArrayItems;
 	}
+	
+	public TodoArray save (TodoArray todoArray) {
+		todoArray.setId(idCount++);
+		todoArrayItems.add(todoArray);
+		return todoArray;
+		
+	}
 }

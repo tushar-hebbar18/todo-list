@@ -25,12 +25,12 @@ const TodoArrayItems = (props) => {
         setTodoItem({ ...todoArrayItems, isDone: !todoArrayItems.isDone})
     }
     return (
-        <>
+        <div>
         <input type="checkbox"
         checked={todoArrayItems.isDone}
         onChange={updateCheck}/>
         <span>{todoArrayItems.taskName}</span>
-        </>
+        </div>
     );
 };
 

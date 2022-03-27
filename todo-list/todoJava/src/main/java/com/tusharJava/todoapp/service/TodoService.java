@@ -31,4 +31,12 @@ public class TodoService {
 		}
 		return null;
 	}
+	public TodoArray createTodoItem() {
+		
+		TodoArray todoArray = new TodoArray();
+		todoArray.setIsDone(false);
+		todoArray = todoRepo.save(todoArray);
+		todoArray.setTaskName("TASK #" + todoArray.getId());
+		return todoArray;
+	}
 }
