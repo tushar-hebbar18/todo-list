@@ -2,6 +2,7 @@ package com.tusharJava.todoapp.repo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,13 @@ public class TodoRepo {
 		todoArray.setId(idCount++);
 		todoArrayItems.add(todoArray);
 		return todoArray;
+		
+	}
+
+	public void delete(Integer id) {
+		todoArrayItems = todoArrayItems.stream()
+									.filter(todoArrayItems -> !todoArrayItems.getId().equals(id))
+									.collect(Collectors.toList());
 		
 	}
 }

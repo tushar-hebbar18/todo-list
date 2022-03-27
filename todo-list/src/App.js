@@ -32,7 +32,12 @@ function App() {
           setTodoArray([...todoArrays,aData]);
         });
   }
-
+  function handleDeleteTodoItem(item){
+    const updateTodoItems = todoArrays.filter(
+        (aData) => aData.id !== item.id
+    );
+    setTodoArray([...updateTodoItems]);
+}
   return (
     <>
     <div>
@@ -41,7 +46,7 @@ function App() {
     <div>
       {todoArrays
         ? todoArrays.map((todoArrayItems) => {
-            return <TodoArrayItems key={todoArrayItems.id} data={todoArrayItems} />;
+            return <TodoArrayItems key={todoArrayItems.id} data={todoArrayItems} emitDeleteItem={handleDeleteTodoItem} />;
         })
         : "loading div"}
     </div>

@@ -39,4 +39,7 @@ public class TodoService {
 		todoArray.setTaskName("TASK #" + todoArray.getId());
 		return todoArray;
 	}
+	public void deleteTodoItem(Integer id) {
+		todoRepo.delete(id);
+	}
 }
